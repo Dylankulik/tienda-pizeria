@@ -201,33 +201,31 @@
             <p class="total-final-modal">Total: <strong id="total-carrito">$0</strong></p>
 
             <h3>Tus Datos para el Pedido</h3>
-            <form id="formulario-pedido-modal" action="envia_pedido.php" method="GET" target="_blank">
-                <input type="hidden" name="numero_local" id="numero-local-input">
-                <select name="local-selector" id="local-selector" required>
-                    <option value="">-- Selecciona tu Local más Cercano --</option>
-                    <option value="wilde">Wilde</option>
-                    <option value="lanus">Lanús</option>
-                    <option value="gerli">Gerli</option>
-                </select>
-                <input type="text" name="nombre" id="nombre-cliente" placeholder="Tu Nombre y Apellido" required>
-                <input type="tel" name="telefono" id="telefono-cliente" placeholder="Tu WhatsApp (Ej: 1123456789)"
-                    required>
-                <textarea name="direccion" id="direccion-cliente" placeholder="Dirección de Entrega y Referencia"
-                    required></textarea>
+            <form id="formulario-pedido-modal">
+    <input type="hidden" name="numero_local" id="numero-local-input">
+    <select name="local-selector" id="local-selector" required>
+        <option value="">-- Selecciona tu Local más Cercano --</option>
+        <option value="wilde">Wilde</option>
+        <option value="lanus">Lanús</option>
+        <option value="gerli">Gerli</option>
+    </select>
+    <input type="text" name="nombre" id="nombre-cliente" placeholder="Tu Nombre y Apellido" required>
+    <input type="tel" name="telefono" id="telefono-cliente" placeholder="Tu WhatsApp (Ej: 1123456789)" required>
+    <textarea name="direccion" id="direccion-cliente" placeholder="Dirección de Entrega y Referencia" required></textarea>
+    
+    <select name="metodo_pago" id="metodo-pago" required>
+        <option value="">-- Selecciona el Método de Pago --</option>
+        <option value="Efectivo al recibir">Efectivo al recibir</option>
+        <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+        <option value="Mercado Pago (QR/Link)">Mercado Pago (QR/Link)</option>
+    </select>
+    <input type="hidden" name="detalle" id="detalle-pedido-input">
+    <input type="hidden" name="total_final" id="total-final-input">
 
-                <select name="metodo_pago" id="metodo-pago" required>
-                    <option value="">-- Selecciona el Método de Pago --</option>
-                    <option value="Efectivo al recibir">Efectivo al recibir</option>
-                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
-                    <option value="Mercado Pago (QR/Link)">Mercado Pago (QR/Link)</option>
-                </select>
-                <input type="hidden" name="detalle" id="detalle-pedido-input">
-                <input type="hidden" name="total_final" id="total-final-input">
-
-                <button type="submit" id="enviar-whatsapp-btn" class="boton-finalizar-compra" disabled>
-                    ✅ Finalizar Compra y Enviar por WhatsApp
-                </button>
-            </form>
+    <button type="submit" id="enviar-whatsapp-btn" class="boton-finalizar-compra" disabled>
+        ✅ Finalizar Compra y Enviar por WhatsApp
+    </button>
+</form>
         </div>
     </div>
 
