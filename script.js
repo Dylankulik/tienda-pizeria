@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado del Carrito y WhatsApp
     let carrito = {};
     const numerosWhatsApp = {
-        'wilde': '5491153148925', // Nro de Wilde4
-        'lanus': '5491153148925', // Nro de Lanús
-        'gerli': '5491153148925' // Nro de Gerli
+        'wilde': '5491125159506', // Nro de Wilde4
+        'lanus': '5491125159506', // Nro de Lanús
+        'gerli': '5491125159506' // Nro de Gerli
     };
  
     // --- FUNCIÓN PRINCIPAL DE RENDERIZADO Y CÁLCULO ---
