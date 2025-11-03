@@ -281,18 +281,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const precioItemFormato = new Intl.NumberFormat('es-AR').format(item.total);
 
                 if (item.unidades_docena) {
-                    let detalleUnidades = '';
-                    for (const gusto in item.detalle_gustos) {
-                        detalleUnidades += `${item.detalle_gustos[gusto]} ${gusto}, `;
-                    }
-                    detalleUnidades = detalleUnidades.slice(0, -2); 
-
-                    detallePedido += `* ${nombre}\n`;
-                    detallePedido += `  - Cantidad: ${item.cantidad} docenas (${item.unidades_docena} un. total)\n`;
-                    detallePedido += `  - Detalle Sabores: ${detalleUnidades}\n`;
-                    detallePedido += `  - Subtotal: $${precioItemFormato}\n`;
+                    // La variable ${nombre} YA contiene el tipo de cocción y el detalle de sabores (Ej: Docenas... (Al Horno) [10 Carne, 2 JyQ])
+                    // Por lo tanto, solo necesitamos agregar el total de docenas y el subtotal para ser concisos.
+                    
+                    detallePedido += `* ${nombre} \n`;
+                    // Mostramos la cantidad total de docenas/unidades y el subtotal en una sola línea.
+                    detallePedido += `  - Total: ${item.cantidad} docena(s) (${item.unidades_docena} un.) / $${precioItemFormato}\n`;
 
                 } else {
+                    // Productos estándar (sin cambio)
                     detallePedido += `* ${item.cantidad} unidades de ${nombre} = $${precioItemFormato}\n`;
                 }
             }
