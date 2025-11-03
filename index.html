@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzería Online - Pedidos por WhatsApp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1><span class="nombre-bur">Piz</span><span class="nombre-gerli">zeria</span>
+            🍕</h1>
+    </header>
+
+    <nav class="filtro-navegacion">
+        <button class="filtro-btn activo" data-filtro="todo">TODO</button>
+        <button class="filtro-btn" data-filtro="pizzas">PIZZAS</button>
+        <button class="filtro-btn" data-filtro="combo">COMBOS</button>
+        <button class="filtro-btn" data-filtro="empanadas">EMPANADAS</button>
+        <button class="filtro-btn" data-filtro="bebidas">BEBIDAS</button>
+    </nav>
+
+    <main>
+
+        <section id="pizzas" class="catalogo">
+            <div class="productos">
+                <div class="producto-card" data-nombre="Muzzarella Grande" data-precio="6500" data-unidad="unidad">
+                    <img src="img/pizza/muzarela.png" alt="Pizza Muzzarella">
+                    <h3>Muzzarella Grande</h3>
+                    <p class="precio">$6500</p>
+                    <div class="interaccion-producto">
+                        <input type="number" min="1" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar</button>
+                    </div>
+                </div>
+
+                <div class="producto-card" data-nombre="Fugazzeta Rellena" data-precio="8500" data-unidad="unidad">
+                    <img src="img/pizza/cebolla.png" alt="Pizza Fugazzeta Rellena">
+                    <h3>Fugazzeta Rellena</h3>
+                    <p class="precio">$8500</p>
+                    <div class="interaccion-producto">
+                        <input type="number" min="1" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="combo" class="catalogo">
+            <div class="productos">
+                <div class="producto-card" data-nombre="Combo Pizza Muzzarella + Bebida" data-precio="9500" data-unidad="unidad">
+                    <img src="img/combos/combo1.png" alt="Combo Muzzarella y Bebida">
+                    <h3>Combo Muzzarella + Bebida</h3>
+                    <p class="precio">$9500</p>
+                    <div class="interaccion-producto">
+                        <input type="number" min="1" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="empanadas" class="catalogo">
+            <div class="productos">
+
+                <div class="producto-card empanadas-card" data-nombre="Docenas de Empanadas Mixtas" data-precio="4500" data-unidad="docena">
+                    <img src="img/empanadas/docena.png" alt="Docena de Empanadas">
+                    <h3>Docena de Empanadas Mixtas</h3>
+                    <p class="precio">$4500 (Por Docena)</p>
+                    
+                    <button class="btn-abrir-sabores">Elegir Sabores y Cantidad</button>
+                    
+                    <div class="interaccion-producto" style="display: none;">
+                        <input type="hidden" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar al Carrito</button>
+                    </div>
+                </div>
+                
+                <div class="producto-card" data-nombre="Media Docena de Roquefort" data-precio="2500" data-unidad="media docena">
+                    <img src="img/empanadas/docena.png" alt="Empanada de Roquefort">
+                    <h3>Media Docena Roquefort</h3>
+                    <p class="precio">$2500</p>
+                    <div class="interaccion-producto">
+                        <input type="number" min="1" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="bebidas" class="catalogo">
+            <div class="productos">
+                <div class="producto-card" data-nombre="Coca-Cola 1.5L" data-precio="4000" data-unidad="unidad">
+                    <img src="img/bebidas/coca-cola1.5l.png" alt="Coca-Cola 1.5 Litros">
+                    <h3>Coca-Cola 1.5L</h3>
+                    <p class="precio">$4000</p>
+                    <div class="interaccion-producto">
+                        <input type="number" min="1" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar</button>
+                    </div>
+                </div>
+
+                <div class="producto-card" data-nombre="Cerveza Quilmes Litro" data-precio="4000" data-unidad="unidad">
+                    <img src="img/bebidas/quilme1l.png" alt="Cerveza Quilmes">
+                    <h3>Cerveza Quilmes Litro</h3>
+                    <p class="precio">$4000</p>
+                    <div class="interaccion-producto">
+                        <input type="number" min="1" value="1" class="cantidad">
+                        <button class="agregar-btn">Agregar</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="modal-empanadas" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal-empanadas">&times;</span>
+            <h2>🥟 Configurar Empanadas Mixtas</h2>
+            <p>Selecciona la **cantidad de docenas** y distribuye los sabores en **múltiplos de 12**.</p>
+            
+            <hr>
+            
+            <div class="control-docenas">
+                <label for="docenas-selector">¿Cuántas docenas deseas?</label>
+                <select id="docenas-selector">
+                    <option value="1">1 Docena (12 unidades)</option>
+                    <option value="2">2 Docenas (24 unidades)</option>
+                    <option value="3">3 Docenas (36 unidades)</option>
+                    <option value="4">4 Docenas (48 unidades)</option>
+                </select>
+                <p class="info-docenas">Total de unidades a distribuir: <strong id="total-unidades-requeridas">12</strong></p>
+            </div>
+            
+            <div id="gustos-selector">
+                <h4>Distribución de Sabores:</h4>
+
+                <div class="gusto-item-modal">
+                    <label>Carne:</label>
+                    <input type="number" min="0" value="0" data-gusto="Carne" class="cantidad-unidad-empanada-modal">
+                </div>
+
+                <div class="gusto-item-modal">
+                    <label>Jamón y Queso:</label>
+                    <input type="number" min="0" value="0" data-gusto="JyQ" class="cantidad-unidad-empanada-modal">
+                </div>
+
+                <div class="gusto-item-modal">
+                    <label>Pollo:</label>
+                    <input type="number" min="0" value="0" data-gusto="Pollo" class="cantidad-unidad-empanada-modal">
+                </div>
+                
+                <div class="coccion-item-modal">
+                     <label for="select-coccion-modal">Cocción:</label>
+                    <select class="select-coccion-empanada-modal" id="select-coccion-modal" required>
+                        <option value="">-- Seleccionar Cocción --</option>
+                        <option value="Frita">Fritas</option>
+                        <option value="Al Horno">Al Horno</option>
+                    </select>
+                </div>
+
+                <p class="info-docenas">Unidades distribuidas: <strong id="unidades-distribuidas">0</strong></p>
+                <p id="validacion-unidades"></p>
+                
+            </div>
+            
+            <button id="agregar-empanadas-modal-btn" class="boton-finalizar-compra" disabled>
+                Añadir al Carrito (0 Docenas)
+            </button>
+        </div>
+    </div>
+
+
+    <button id="boton-carrito-flotante" title="Ver Carrito">
+        🛒 <span id="contador-productos">0</span>
+    </button>
+
+    <div id="modal-carrito" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <h2>🛍️ Carrito de Compras</h2>
+
+            <div class="carrito-scroll-area">
+                <ul id="lista-carrito">
+                    <li>Aún no has agregado productos.</li>
+                </ul>
+            </div>
+
+            <p class="total-final-modal">Total: <strong id="total-carrito">$0</strong></p>
+
+            <h3>Tus Datos para el Pedido</h3>
+            <form id="formulario-pedido-modal" action="envia_pedido.php" method="GET" target="_blank">
+                <input type="hidden" name="numero_local" id="numero-local-input">
+                <select name="local-selector" id="local-selector" required>
+                    <option value="">-- Selecciona tu Local más Cercano --</option>
+                    <option value="wilde">Wilde</option>
+                    <option value="lanus">Lanús</option>
+                    <option value="gerli">Gerli</option>
+                </select>
+                <input type="text" name="nombre" id="nombre-cliente" placeholder="Tu Nombre y Apellido" required>
+                <input type="tel" name="telefono" id="telefono-cliente" placeholder="Tu WhatsApp (Ej: 1123456789)"
+                    required>
+                <textarea name="direccion" id="direccion-cliente" placeholder="Dirección de Entrega y Referencia"
+                    required></textarea>
+                
+                <select name="metodo_pago" id="metodo-pago" required>
+                    <option value="">-- Selecciona el Método de Pago --</option>
+                    <option value="Efectivo al recibir">Efectivo al recibir</option>
+                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                    <option value="Mercado Pago (QR/Link)">Mercado Pago (QR/Link)</option>
+                </select>
+                <input type="hidden" name="detalle" id="detalle-pedido-input">
+                <input type="hidden" name="total_final" id="total-final-input">
+
+                <button type="submit" id="enviar-whatsapp-btn" class="boton-finalizar-compra" disabled>
+                    ✅ Finalizar Compra y Enviar por WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        ¡BUON APPETITO!
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

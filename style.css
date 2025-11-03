@@ -1,0 +1,546 @@
+/*
+    ======================================
+    ARCHIVO: style.css
+    ======================================
+    Versión restaurada y corregida.
+    ======================================
+*/
+
+/* --- VARIABLES Y RESET BÁSICO --- */
+:root {
+    --color-fondo: #121212; 
+    --color-card: #1e1e1e;
+    --color-texto-claro: #f0f0f0; 
+    --color-borde: #333;
+    
+    /* Colores Temáticos */
+    --color-principal: #ff4500; /* Rojo Tomate */
+    --color-enfasis: #ffc107; /* Amarillo Queso */
+    --color-verde-albahaca: #4caf50; /* Verde Validacion */
+    --color-sombra: rgba(0, 0, 0, 0.5); 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Tipografía base simple */
+    background-color: var(--color-fondo);
+    color: var(--color-texto-claro);
+    line-height: 1.6;
+    padding-bottom: 80px; 
+}
+
+/* --- ENCABEZADO (HEADER) --- */
+header {
+    background-color: var(--color-card);
+    padding: 20px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px var(--color-sombra);
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: var(--color-texto-claro);
+}
+
+.nombre-bur {
+    color: var(--color-principal);
+    font-weight: bold;
+}
+
+.nombre-gerli {
+    color: var(--color-enfasis);
+    font-weight: 300;
+}
+
+
+/* --- NAVEGACIÓN DE FILTROS --- */
+.filtro-navegacion {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: var(--color-card);
+    border-bottom: 1px solid var(--color-borde);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.filtro-btn {
+    background-color: transparent;
+    color: var(--color-texto-claro);
+    border: 1px solid var(--color-borde);
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.filtro-btn:hover {
+    background-color: var(--color-borde);
+}
+
+.filtro-btn.activo {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+    color: white;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+#titulo-filtro-activo {
+    color: var(--color-enfasis);
+    margin: 15px 0 20px 0;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.catalogo {
+    margin-bottom: 40px;
+}
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* --- TARJETA DE PRODUCTO (Card) --- */
+.producto-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 15px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 8px var(--color-sombra);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.producto-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.producto-card h3 {
+    color: var(--color-enfasis);
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+.producto-card .precio {
+    color: var(--color-texto-claro);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Botón de abrir el selector de sabores (Empanadas) */
+.btn-abrir-sabores {
+    background-color: var(--color-verde-albahaca); 
+    color: var(--color-texto-claro);
+    border: none;
+    padding: 12px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    margin-top: auto; 
+    width: 100%;
+}
+
+.btn-abrir-sabores:hover {
+    background-color: #388E3C;
+}
+
+/* Controles de Interacción (Cantidad y Agregar) - Productos Estándar */
+.interaccion-producto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.interaccion-producto .cantidad {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-claro);
+    text-align: center;
+    font-size: 1em;
+}
+
+.agregar-btn {
+    flex-grow: 1;
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.agregar-btn:hover {
+    background-color: #e63900;
+}
+
+
+/* --- BOTÓN FLOTANTE DEL CARRITO --- */
+#boton-carrito-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--color-sombra);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+#boton-carrito-flotante:hover {
+    background-color: #e63900;
+}
+
+#contador-productos {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--color-enfasis);
+    color: var(--color-fondo);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+
+/* --------------------------------- */
+/* ESTILOS DE LOS MODALES (GENERAL)  */
+/* --------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--color-sombra);
+    padding-top: 10px;
+}
+
+.modal-contenido {
+    background-color: var(--color-card);
+    margin: 0px auto;
+    padding: 25px;
+    border: 1px solid var(--color-borde);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.cerrar-modal, .cerrar-modal-empanadas {
+    color: var(--color-borde);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.cerrar-modal:hover, .cerrar-modal:focus,
+.cerrar-modal-empanadas:hover, .cerrar-modal-empanadas:focus {
+    color: var(--color-principal);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- CARRITO DE COMPRAS (MODAL) --- */
+#modal-carrito h2 {
+    color: var(--color-principal);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-borde);
+    padding-bottom: 5px;
+}
+
+.carrito-scroll-area {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-right: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+}
+
+#lista-carrito {
+    list-style: none;
+    padding: 0;
+}
+
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--color-borde);
+}
+
+.item-carrito:last-child {
+    border-bottom: none;
+}
+
+.item-nombre {
+    font-weight: bold;
+    color: var(--color-texto-claro);
+}
+
+.item-detalles {
+    font-size: 0.9em;
+    color: #AAA;
+    display: block;
+}
+
+.control-btn.eliminar-item {
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.2s;
+}
+
+.control-btn.eliminar-item:hover {
+    background-color: #e63900;
+}
+
+.total-final-modal {
+    text-align: right;
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: var(--color-enfasis);
+    border-top: 1px solid var(--color-borde);
+    padding-top: 10px;
+}
+
+/* --- FORMULARIO DE PEDIDO (MODAL) --- */
+#modal-carrito h3 {
+    color: var(--color-verde-albahaca);
+    margin: 15px 0 10px 0;
+}
+
+#formulario-pedido-modal input[type="text"],
+#formulario-pedido-modal input[type="tel"],
+#formulario-pedido-modal textarea,
+#formulario-pedido-modal select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-claro);
+    font-size: 1em;
+}
+
+#formulario-pedido-modal textarea {
+    resize: vertical;
+}
+
+.boton-finalizar-compra {
+    width: 100%;
+    background-color: var(--color-verde-albahaca);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.boton-finalizar-compra:hover:not(:disabled) {
+    background-color: #388E3C;
+}
+
+.boton-finalizar-compra:disabled {
+    background-color: #4a544a;
+    cursor: not-allowed;
+}
+
+/* --------------------------------- */
+/* ESTILOS DEL MODAL DE EMPANADAS */
+/* --------------------------------- */
+#modal-empanadas .modal-contenido {
+    max-width: 500px; 
+}
+
+#modal-empanadas h2 {
+    color: var(--color-enfasis);
+    margin-bottom: 10px;
+}
+
+#modal-empanadas hr {
+    border: none;
+    border-top: 1px solid var(--color-borde);
+    margin: 15px 0;
+}
+
+.control-docenas, #gustos-selector {
+    padding: 10px 0;
+}
+
+.control-docenas label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#docenas-selector, .select-coccion-empanada-modal {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    background-color: var(--color-fondo); 
+    color: var(--color-texto-claro);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%20197.8%20146.2%2057%205.4%20197.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 0.6em;
+}
+
+.info-docenas {
+    font-size: 0.9em;
+    color: #AAA;
+    margin-bottom: 15px;
+}
+
+#gustos-selector h4 {
+    color: var(--color-principal);
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.gusto-item-modal, .coccion-item-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.gusto-item-modal label, .coccion-item-modal label {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.cantidad-unidad-empanada-modal {
+    width: 70px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: var(--color-fondo); 
+    color: var(--color-texto-claro); 
+}
+
+/* Validación de Unidades */
+#validacion-unidades {
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#agregar-empanadas-modal-btn {
+    margin-top: 20px;
+}
+
+/* --- PIE DE PÁGINA --- */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--color-card);
+    color: var(--color-borde);
+    font-size: 0.8em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 50;
+    box-shadow: 0 -2px 5px var(--color-sombra);
+}
+
+/* --- MEDIA QUERIES (RESPONSIVE) --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .filtro-navegacion {
+        padding: 5px;
+    }
+
+    .filtro-btn {
+        margin: 3px;
+        padding: 6px 12px;
+    }
+
+    main {
+        padding: 0 10px;
+    }
+    
+    .productos {
+        gap: 15px;
+    }
+
+    .producto-card {
+        max-width: 100%;
+    }
+
+    .modal-contenido {
+        margin: 10% auto;
+        padding: 20px;
+    }
+}
