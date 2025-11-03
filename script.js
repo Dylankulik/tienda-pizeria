@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado del Carrito y WhatsApp
     let carrito = {};
     const numerosWhatsApp = {
-        'wilde': '5491125159506',
-        'lanus': '5491125159506',
-        'gerli': '5491125159506'
+        'wilde': '5491125159506', // Nro de Wilde
+        'lanus': '5491125159506', // Nro de Lanús
+        'gerli': '5491125159506' // Nro de Gerli
     };
  
     // --- FUNCIÓN PRINCIPAL DE RENDERIZADO Y CÁLCULO ---
@@ -248,25 +248,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- LÓGICA DE ENVÍO POR WHATSAPP (A PHP) ---
+    // --- LÓGICA DE ENVÍO POR WHATSAPP (100% JS) ---
     const localSelector = document.getElementById('local-selector');
-    const numeroLocalInput = document.getElementById('numero-local-input');
-
+    
     formulario.addEventListener('submit', (e) => {
+        // 🚨 Impedimos el envío del formulario al servidor
+        e.preventDefault(); 
+        
+        // 1. VALIDACIÓN
         if (localSelector.value === "") {
             alert("Por favor, selecciona el local al que deseas enviar el pedido.");
-            // Previene el envío si falta el local.
-            e.preventDefault(); 
             return;
         }
-        
-        // Si el local está seleccionado, NO usamos e.preventDefault(), permitiendo el envío a PHP.
 
+        // 2. OBTENCIÓN DE DATOS DEL CLIENTE
         const localElegido = localSelector.value;
         const numeroWhatsApp = numerosWhatsApp[localElegido];
-        // Rellenar campo oculto para que PHP lo use
-        numeroLocalInput.value = numeroWhatsApp;
+        const nombreCliente = document.getElementById('nombre-cliente').value;
+        const telefonoCliente = document.getElementById('telefono-cliente').value;
+        const direccionCliente = document.getElementById('direccion-cliente').value;
+        const metodoPago = document.getElementById('metodo-pago').value;
 
+        // 3. CONSTRUCCIÓN DEL DETALLE DEL PEDIDO
         let totalFinal = 0;
         let detallePedido = '';
 
@@ -280,12 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item.unidades_docena) {
                     let detalleUnidades = '';
                     for (const gusto in item.detalle_gustos) {
-                        // Se usa espacio simple aquí
                         detalleUnidades += `${item.detalle_gustos[gusto]} ${gusto}, `;
                     }
                     detalleUnidades = detalleUnidades.slice(0, -2); 
 
-                    // Se eliminaron espacios extra aquí
                     detallePedido += `* ${nombre}\n`;
                     detallePedido += `  - Cantidad: ${item.cantidad} docenas (${item.unidades_docena} un. total)\n`;
                     detallePedido += `  - Detalle Sabores: ${detalleUnidades}\n`;
@@ -296,17 +297,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        
+        // 4. MENSAJE FINAL COMPLETO
+        const mensajeCompleto = `
+¡Hola! 🍕 Tengo un pedido para el local de *${localElegido.toUpperCase()}*.
 
-        // Rellenar campos ocultos antes del envío a PHP
-        document.getElementById('detalle-pedido-input').value = detallePedido;
-        document.getElementById('total-final-input').value = new Intl.NumberFormat('es-AR').format(totalFinal);
+*DATOS DEL CLIENTE:*
+Nombre: ${nombreCliente}
+Teléfono: ${telefonoCliente}
+Dirección: ${direccionCliente}
+Método de Pago: ${metodoPago}
 
-        // Opcional: Cerrar el modal (el formulario abrirá una nueva pestaña por target="_blank")
+---
+*DETALLE DEL PEDIDO:*
+${detallePedido}
+---
+*TOTAL FINAL: ${new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(totalFinal)}*
+`;
+        
+        // 5. REDIRECCIÓN A WHATSAPP
+        const mensajeCodificado = encodeURIComponent(mensajeCompleto);
+        const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeCodificado}`;
+
+        window.open(urlWhatsApp, '_blank');
+        
         modal.style.display = 'none';
     });
 
 
-    // --- LÓGICA DE FILTRADO (AJUSTADA A NUEVOS CATÁLOGOS) ---
+    // --- LÓGICA DE FILTRADO ---
     const seccionesCatalogo = document.querySelectorAll('.catalogo');
     const mainContent = document.querySelector('main');
     const botonesFiltro = document.querySelectorAll('.filtro-btn');
