@@ -51,7 +51,8 @@
 
         <section id="combo" class="catalogo">
             <div class="productos">
-                <div class="producto-card" data-nombre="Combo Pizza Muzzarella + Bebida" data-precio="9500" data-unidad="unidad">
+                <div class="producto-card" data-nombre="Combo Pizza Muzzarella + Bebida" data-precio="9500"
+                    data-unidad="unidad">
                     <img src="img/combos/combo1.png" alt="Combo Muzzarella y Bebida">
                     <h3>Combo Muzzarella + Bebida</h3>
                     <p class="precio">$9500</p>
@@ -67,20 +68,22 @@
         <section id="empanadas" class="catalogo">
             <div class="productos">
 
-                <div class="producto-card empanadas-card" data-nombre="Docenas de Empanadas Mixtas" data-precio="4500" data-unidad="docena">
+                <div class="producto-card empanadas-card" data-nombre="Docenas de Empanadas Mixtas" data-precio="4500"
+                    data-unidad="docena">
                     <img src="img/empanadas/docena.png" alt="Docena de Empanadas">
                     <h3>Docena de Empanadas Mixtas</h3>
                     <p class="precio">$4500 (Por Docena)</p>
-                    
+
                     <button class="btn-abrir-sabores">Elegir Sabores y Cantidad</button>
-                    
+
                     <div class="interaccion-producto" style="display: none;">
                         <input type="hidden" value="1" class="cantidad">
                         <button class="agregar-btn">Agregar al Carrito</button>
                     </div>
                 </div>
-                
-                <div class="producto-card" data-nombre="Media Docena de Roquefort" data-precio="2500" data-unidad="media docena">
+
+                <div class="producto-card" data-nombre="Media Docena de Roquefort" data-precio="2500"
+                    data-unidad="media docena">
                     <img src="img/empanadas/docena.png" alt="Empanada de Roquefort">
                     <h3>Media Docena Roquefort</h3>
                     <p class="precio">$2500</p>
@@ -120,15 +123,15 @@
         </section>
 
     </main>
-    
+
     <div id="modal-empanadas" class="modal">
         <div class="modal-contenido">
             <span class="cerrar-modal-empanadas">&times;</span>
             <h2>🥟 Configurar Empanadas Mixtas</h2>
             <p>Selecciona la **cantidad de docenas** y distribuye los sabores en **múltiplos de 12**.</p>
-            
+
             <hr>
-            
+
             <div class="control-docenas">
                 <label for="docenas-selector">¿Cuántas docenas deseas?</label>
                 <select id="docenas-selector">
@@ -137,9 +140,10 @@
                     <option value="3">3 Docenas (36 unidades)</option>
                     <option value="4">4 Docenas (48 unidades)</option>
                 </select>
-                <p class="info-docenas">Total de unidades a distribuir: <strong id="total-unidades-requeridas">12</strong></p>
+                <p class="info-docenas">Total de unidades a distribuir: <strong
+                        id="total-unidades-requeridas">12</strong></p>
             </div>
-            
+
             <div id="gustos-selector">
                 <h4>Distribución de Sabores:</h4>
 
@@ -157,9 +161,9 @@
                     <label>Pollo:</label>
                     <input type="number" min="0" value="0" data-gusto="Pollo" class="cantidad-unidad-empanada-modal">
                 </div>
-                
+
                 <div class="coccion-item-modal">
-                     <label for="select-coccion-modal">Cocción:</label>
+                    <label for="select-coccion-modal">Cocción:</label>
                     <select class="select-coccion-empanada-modal" id="select-coccion-modal" required>
                         <option value="">-- Seleccionar Cocción --</option>
                         <option value="Frita">Fritas</option>
@@ -169,9 +173,9 @@
 
                 <p class="info-docenas">Unidades distribuidas: <strong id="unidades-distribuidas">0</strong></p>
                 <p id="validacion-unidades"></p>
-                
+
             </div>
-            
+
             <button id="agregar-empanadas-modal-btn" class="boton-finalizar-compra" disabled>
                 Añadir al Carrito (0 Docenas)
             </button>
@@ -210,7 +214,7 @@
                     required>
                 <textarea name="direccion" id="direccion-cliente" placeholder="Dirección de Entrega y Referencia"
                     required></textarea>
-                
+
                 <select name="metodo_pago" id="metodo-pago" required>
                     <option value="">-- Selecciona el Método de Pago --</option>
                     <option value="Efectivo al recibir">Efectivo al recibir</option>

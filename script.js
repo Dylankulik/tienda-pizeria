@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 🚨 Elementos del Modal de Empanadas
     const modalEmpanadas = document.getElementById('modal-empanadas');
-    const cerrarModalEmpanadasBtn = document.querySelector('.cerrar-modal-empanadas');
     const docenasSelector = document.getElementById('docenas-selector');
     const totalUnidadesRequeridasSpan = document.getElementById('total-unidades-requeridas');
     const unidadesDistribuidasSpan = document.getElementById('unidades-distribuidas');
@@ -192,26 +191,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // 4. Botón de Añadir al Carrito (desde el modal) - 🚨 CORRECCIÓN DEL BOTÓN
+    // 4. Botón de Añadir al Carrito (desde el modal)
     agregarEmpanadasBtn.addEventListener('click', () => {
-        // Ejecutar la validación al hacer clic para obtener los datos más recientes
         const { docenas, unidadesRequeridas, detalleGustos, coccionSeleccionada } = actualizarTotalUnidadesModal();
         
-        // El botón solo debería estar activo si la validación es exitosa.
         if (agregarEmpanadasBtn.disabled) {
              return; 
         }
 
-        // Obtener la información del producto base
         const empanadaCard = document.querySelector('.empanadas-card');
         const nombreBase = empanadaCard.getAttribute('data-nombre');
         const precioDocena = parseFloat(empanadaCard.getAttribute('data-precio'));
         
-        // Crear el nombre del producto (clave única)
         const gustosStr = Object.keys(detalleGustos).map(g => `${detalleGustos[g]} ${g}`).join(', ');
         const nombreProducto = `${nombreBase} (${coccionSeleccionada}) [${gustosStr}]`;
         
-        // Agregar/Actualizar al carrito
         if (!carrito[nombreProducto]) {
             carrito[nombreProducto] = { 
                 nombre: nombreProducto,
@@ -246,29 +240,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('click', (event) => {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = 'none';
         }
-        if (event.target == modalEmpanadas) {
+        if (event.target === modalEmpanadas) {
             modalEmpanadas.style.display = 'none';
         }
     });
 
     // --- LÓGICA DE ENVÍO POR WHATSAPP (A PHP) ---
-    // (Se mantiene igual)
     const localSelector = document.getElementById('local-selector');
     const numeroLocalInput = document.getElementById('numero-local-input');
 
     formulario.addEventListener('submit', (e) => {
-        // ... (Lógica de formulario y WhatsApp) ...
         if (localSelector.value === "") {
             alert("Por favor, selecciona el local al que deseas enviar el pedido.");
+            // Previene el envío si falta el local.
             e.preventDefault(); 
             return;
         }
+        
+        // Si el local está seleccionado, NO usamos e.preventDefault(), permitiendo el envío a PHP.
 
         const localElegido = localSelector.value;
         const numeroWhatsApp = numerosWhatsApp[localElegido];
+        // Rellenar campo oculto para que PHP lo use
         numeroLocalInput.value = numeroWhatsApp;
 
         let totalFinal = 0;
@@ -284,10 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item.unidades_docena) {
                     let detalleUnidades = '';
                     for (const gusto in item.detalle_gustos) {
+                        // Se usa espacio simple aquí
                         detalleUnidades += `${item.detalle_gustos[gusto]} ${gusto}, `;
                     }
                     detalleUnidades = detalleUnidades.slice(0, -2); 
 
+                    // Se eliminaron espacios extra aquí
                     detallePedido += `* ${nombre}\n`;
                     detallePedido += `  - Cantidad: ${item.cantidad} docenas (${item.unidades_docena} un. total)\n`;
                     detallePedido += `  - Detalle Sabores: ${detalleUnidades}\n`;
@@ -299,9 +297,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Rellenar campos ocultos antes del envío a PHP
         document.getElementById('detalle-pedido-input').value = detallePedido;
         document.getElementById('total-final-input').value = new Intl.NumberFormat('es-AR').format(totalFinal);
 
+        // Opcional: Cerrar el modal (el formulario abrirá una nueva pestaña por target="_blank")
         modal.style.display = 'none';
     });
 
